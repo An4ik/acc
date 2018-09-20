@@ -55,6 +55,7 @@ class Common(Configuration):
     DATABASES = {
         'default': dj_database_url.config(
             default='postgres://acc:acc@localhost:5432/acc',
+            engine='django.db.backends.postgresql',
             conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
         )
     }

@@ -14,6 +14,9 @@ class Airplane(models.Model):
 
     passengers = models.IntegerField(_('passengers'), default=0)
 
+    class Meta:
+        app_label = 'airplanes'
+
     @property
     def total_consumption(self):
         return self.consumption + Decimal(self.passengers * self.PASSENGER_FUEL_CONSUMPTION)

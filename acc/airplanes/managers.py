@@ -1,6 +1,6 @@
-from math import log
-from decimal import Decimal
 from django.db import models
+
+from . import utils
 
 
 class AirplaneQuerySet(models.QuerySet):
@@ -9,7 +9,6 @@ class AirplaneQuerySet(models.QuerySet):
 
 
 class AirplaneManager(models.Manager):
-    CAPACITY_VALUE = 200
 
     def get_queryset(self):
         return AirplaneQuerySet(self.model, using=self._db)
@@ -17,9 +16,9 @@ class AirplaneManager(models.Manager):
     def create_instance(self, id, passengers):
         return self.model(
             id=id,
-            fuel_tank=id * self.CAPACITY_VALUE,
-            consumption=Decimal(log(id * 0.8)),
-            passengers=passengers
+            passengers=passengers,
+            fuel_tank=utils.calculate_fuel_tank(id),
+            consumption=utils.calculate_consumption(id),
         )
 
     def create_and_get_all(self, data):
