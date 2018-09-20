@@ -14,17 +14,17 @@ class AirplaneViewSet(mixins.ListModelMixin,
     permission_classes = (AllowAny,)
 
     @action(methods=['post'], detail=False)
-    def calculation(self, request, pk=None):
+    def calculate_consumptions(self, request, pk=None):
         """
-        1. do calculation of consumption
-        2. store in database
-        3. serialize queryset
-        4. return data
+        Accepts airplane id and passengers number, filtering it and stores (create, update, get) in DB
+        Calculate fuel consumption (per/minute) for every airplane and return them in increasing order
+        by flying time, so the last item is an airplane which has maximum minutes able to fly,
         """
 
         data = filter(lambda x: x.get('id') and isinstance(x['id'], int), request.data)
-        query_set = Airplane.objects.bulk_create(data)
+        query_set = Airplane.objects.create_and_get_all(data)
         serializer = AirplaneSerializer(data=query_set, many=True)
         serializer.is_valid()
-        return Response(data=serializer.data)
+        data = sorted(serializer.data, key=lambda x: x.get('id'))
+        return Response(data=data)
 

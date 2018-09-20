@@ -22,7 +22,17 @@ class AirplaneManager(models.Manager):
             passengers=passengers
         )
 
-    def bulk_create(self, data, batch_size=None):
+    def create_and_get_all(self, data):
+        """
+        :param data: list of id and passengers numbers
+        :return: QuerySet instances
+
+        Divide objects into three categories:
+        1) existed: don't need any action
+        2) updated: need to update
+        3) created: need to create using bulk_create method (one query to DB)
+        """
+
+        # TODO: realize as described in documentation
         instances = [self.create_instance(item.get('id'), item.get('passengers', 0)) for item in data]
         return instances
-        # return super().bulk_create(instances, batch_size)
