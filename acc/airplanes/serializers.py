@@ -3,6 +3,8 @@ from .models import Airplane
 
 
 class AirplaneSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Airplane
-        fields = ('id', )
+        fields = ('id', 'passengers', 'total_consumption', 'available_flying_time')
+
