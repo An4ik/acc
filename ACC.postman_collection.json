@@ -1,0 +1,51 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ACC",
+		"_postman_id": "17b2d664-b9ed-519c-9972-f0b5b13f6cd7",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"request": {
+				"url": "localhost:8000/api/v1/airplanes/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"id\": 4,\n\t\t\"passengers\": 54\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Calc",
+			"request": {
+				"url": "localhost:8000/api/v1/airplanes/calculate_consumptions/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t{\n\t\t\"id\": 15,\n\t\t\"passengers\": 54\n\t},\n\t{\n\t\t\"id\": 6,\n\t\t\"passengers\": 54\n\t},\n\t{\n\t\t\"id\": 7,\n\t\t\"passengers\": 56\n\t}\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
