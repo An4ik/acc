@@ -15,6 +15,11 @@ You have two options to run the current project
 ### 1.1) Using Docker
 
 Start the dev server for local development:
+1. (tmp) Change database configs in config/common.py:57 to: 
+```python
+default='postgres://postgres:@postgres:5432/postgres',
+
+```
 ```bash
 docker-compose up
 ```
